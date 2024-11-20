@@ -1,9 +1,9 @@
-const Breadcrumb = () => {
+const Breadcrumb = ({path}) => {
     return (
 <nav aria-label="Breadcrumb bg-gray-900">
   <ol className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-300">
     <li>
-      <a href="#" className="block transition hover:text-gray-700 dark:hover:text-gray-200">
+      <a href="/" className="block transition hover:text-gray-700 dark:hover:text-gray-200">
         <span className="sr-only"> Home </span>
 
         <svg
@@ -39,10 +39,10 @@ const Breadcrumb = () => {
     </li>
 
     <li>
-      <a href="#" className="block transition hover:text-gray-700 dark:hover:text-gray-200"> Shirts </a>
+      <a href="#" className="block transition hover:text-gray-700 dark:hover:text-gray-200"> {path.split('/')[1]} </a>
     </li>
 
-    <li className="rtl:rotate-180">
+    {path.split('/')[1]&& <li className="rtl:rotate-180">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="size-4"
@@ -55,11 +55,11 @@ const Breadcrumb = () => {
           clipRule="evenodd"
         />
       </svg>
-    </li>
+    </li>}
 
     <li>
       <a href="#" className="block transition hover:text-gray-700 dark:hover:text-gray-200">
-        Plain Tee
+      {path.split('/')[2]}
       </a>
     </li>
   </ol>

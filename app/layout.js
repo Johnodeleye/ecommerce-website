@@ -1,8 +1,8 @@
-import localFont from "next/font/local";
 import { Outfit } from 'next/font/google';
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { NextAuthProvider } from "../components/Providers";
 
 const inter = Outfit({ subsets: ['latin'] })
 
@@ -16,9 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className={inter.className}>
+      <NextAuthProvider>
         <Header />
         {children}
         <Footer />
+        </NextAuthProvider>
       </body>
     </html>
   );

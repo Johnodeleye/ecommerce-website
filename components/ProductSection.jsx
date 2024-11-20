@@ -1,5 +1,5 @@
 'use client';
-import GlobalApi from "@/utils/GlobalApi"
+import GlobalApi from "../utils/GlobalApi"
 import ProductList from "./ProductList"
 import { useEffect, useState } from "react"
 
