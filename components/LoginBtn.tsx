@@ -9,7 +9,9 @@ const LoginBtn = () => {
   const [error, setError] = useState("");
 //   const session = useSession();
   const { data: session, status: sessionStatus } = useSession();
-
+  const Alert = () => {
+    alert('Not Available please try again later, Only Google and Github Providers that are working currently');
+  }
   useEffect(() => {
     if (sessionStatus === "authenticated") {
       router.replace("/");
@@ -160,7 +162,7 @@ const LoginBtn = () => {
                 alt="Github"
               />
             </button>
-            <button
+            <button onClick={Alert}
               
               className="p-2 m-1 duration-300 ease-in-out rounded-lg shadow-lg hover:scale-105"
             >
@@ -170,7 +172,7 @@ const LoginBtn = () => {
                 alt="Facebook"
               />
             </button>
-            <button
+            <button onClick={Alert}
               className="p-2 m-1 duration-300 ease-in-out rounded-lg shadow-lg hover:scale-105"
             >
               <img
@@ -180,7 +182,7 @@ const LoginBtn = () => {
               />
             </button>
 
-            <button
+            <button onClick={Alert}
               className="p-2 m-1 duration-300 ease-in-out rounded-lg shadow-lg hover:scale-105"
             >
               <img

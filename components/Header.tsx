@@ -4,6 +4,8 @@ import Image from "next/image"
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ArrowBigLeftDashIcon, ArrowDownCircle, ShoppingCartIcon } from "lucide-react";
+import { ArrowBigDown } from "lucide";
 const Header = () => {
   const { data: session } = useSession();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -117,26 +119,8 @@ const Header = () => {
                       Sign Out
                   </button>
               </div>
-              <div className="flex items-center gap-2">
-                      <Link className="items-center hidden gap-2 mr-6 md:flex btn" href={'/create-post'}>
-                          <span className="">
-                              <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  strokeWidth={1.5}
-                                  stroke="currentColor"
-                                  className="w-6 h-6"
-                              >
-                                  <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                          </span>
-                          <span className="text-white">Create new</span>
-                      </Link>
-                      <div className="relative cursor-pointer" onClick={() => setIsPopupVisible((prev) => !prev)}>
+              <div className="flex items-center gap-3">
+                    <div className="relative cursor-pointer" onClick={() => setIsPopupVisible((prev) => !prev)}>         
                       <Image
                     src={session?.user?.image || '/devlogo.jpg'}
                     width={36}
@@ -144,24 +128,8 @@ const Header = () => {
                     alt="profile image"
                     className="transition rounded-full shadow md:mr-9 hover:scale-105"
                   />
-                    <span>
-                    <svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  strokeWidth={5}
-  stroke="blue"
-  className="absolute bottom-0 w-4 h-4 -translate-x-1/2 left-1/2 xs:block"  // Apply green-400 class to svg
-  style={{ zIndex: 1, }} // Ensure icon is on top
->
-  <path
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    d="M19 9l-7 7-7-7"
-  />
-                </svg>
-                    </span>
                   </div>
+                  <h2 className="flex gap-1"><ShoppingCartIcon color="blue"/>(0)</h2>
                   </div>
                   </>
       ) : (
@@ -177,7 +145,7 @@ const Header = () => {
           <div className="hidden sm:flex">
             <a
               className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-              href="/login"
+              href="/register"
             >
               Register
             </a>
