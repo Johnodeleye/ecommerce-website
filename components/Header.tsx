@@ -137,13 +137,13 @@ const Header = () => {
                           <span className="text-white">Create new</span>
                       </Link>
                       <div className="relative cursor-pointer" onClick={() => setIsPopupVisible((prev) => !prev)}>
-                    <Image
-                      src={session?.user?.image} 
-                      width={36}
-                      height={36}
-                      alt="profile image"
-                      className="transition rounded-full shadow md:mr-9 hover:scale-105"
-                    />
+                      <Image
+                    src={session?.user?.image || '/devlogo.jpg'}
+                    width={36}
+                    height={36}
+                    alt="profile image"
+                    className="transition rounded-full shadow md:mr-9 hover:scale-105"
+                  />
                     <span>
                     <svg
   xmlns="http://www.w3.org/2000/svg"
