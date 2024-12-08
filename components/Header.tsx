@@ -1,18 +1,41 @@
 'use client';
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image"
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowBigLeftDashIcon, ArrowDownCircle, ShoppingCartIcon } from "lucide-react";
 import { ArrowBigDown } from "lucide";
+import { CartContext } from "@/app/context/CartContext";
+import GlobalApi from "@/utils/GlobalApi";
+import Cart from './Cart'
 const Header = () => {
   const { data: session } = useSession();
+  const {cart,setCart}=useContext(CartContext);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement | null>(null);
-
+  const [openCart, setOpenCart]=useState(false)
   //this session email is very important to track someone's email
   const sessionEmail = session?.user?.email;
+useEffect(() => {
+  const fetchCartItems = async () => {
+    if (sessionEmail) {
+      try {
+        const resp = await GlobalApi.getUserCartItems(sessionEmail);
+        console.log("Cart data:", resp.data.data);
+        setCart(resp.data.data || []); // Update cart context
+      } catch (error) {
+        console.error("Failed to fetch cart items:", error);
+      }
+    }
+  };
+
+  fetchCartItems();
+}, [sessionEmail, setCart]);
+
+useEffect(()=>{
+openCart===false&&setOpenCart(true);
+},[cart])
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -30,6 +53,13 @@ const Header = () => {
       document.removeEventListener('click', handleClickOutside);
   }
 }, [isPopupVisible]);
+
+const getCartItem=()=>{
+  GlobalApi.getUserCartItems(sessionEmail).then(resp=>{
+    console.log('cart', resp.data.data);
+  });
+}
+
 
     return (
 <header className="bg-white dark:bg-gray-800">
@@ -109,6 +139,7 @@ const Header = () => {
             ref={popupRef}
             className={`absolute z-30 right-0 mr-10 top-20 p-6 shadow-lg shadow-blue-600 border border-blue-500 rounded-md  flex-col gap-2 text-right min-w-[160px] bg-black ${isPopupVisible ? 'flex' : 'hidden'}`}>
 
+
                 <div className="font-semibold text-left text-green-500">Welcome, {session?.user?.name}
                 </div>
                 <div className="text-justify">{session?.user?.email}</div>
@@ -129,8 +160,9 @@ const Header = () => {
                     className="transition rounded-full shadow md:mr-9 hover:scale-105"
                   />
                   </div>
-                  <h2 className="flex gap-1"><ShoppingCartIcon color="blue"/>(0)</h2>
+                  <h2 className="flex gap-1 cursor-pointer" onClick={()=>setOpenCart(!openCart)}><ShoppingCartIcon color="white"/>({cart?.length || 0})</h2>
                   </div>
+                  {openCart&&<Cart/>}
                   </>
       ) : (
       <div className="flex items-center gap-4">

@@ -1,20 +1,43 @@
+import { CartContext } from "@/app/context/CartContext";
 import Skeleton from "@/components/Skeleton";
 import authOptions from "@/lib/auth";
+import GlobalApi from "@/utils/GlobalApi";
 
 import { ShoppingCart } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { useContext } from "react";
 
 
 const ProjectInfo =  ({ product }) => {
   const { data: session, status: sessionStatus } = useSession();
-  
+  const {cart,setCart}=useContext(CartContext);
   const onAddtoCartClick=() => {
     if(!session) {
       redirect('/login')
       return;
-    }
+    }else{
+      // logic to add to cart
+    const data = {
+      data: {
+        userName: session.user.name,
+        email: session.user.email,
+        product: product?.documentId,
+      },
+    };
+  
+    GlobalApi.addToCart(data)
+      .then((resp) => {
+        console.log("Product added to cart successfully!",data);
+        setCart(cart=>[...cart,product]);
+      })
+      .catch((error) => {
+        console.error("Failed to add product to cart.");
+        console.error("Error adding product to cart:", error.response?.data.error || error.message);
+      });
+  };
+    
   }
   
   return (
