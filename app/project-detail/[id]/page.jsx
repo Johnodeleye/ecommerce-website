@@ -46,7 +46,7 @@ const ProjectDetail = () => {
      <div>
      {productList ? (
      <div className="mt-20">
-     <h2 className="font-medium text-[20px] mb-4">Similar Projects</h2>
+     <h2 className="font-medium text-[20px] mb-4 text-green-400">Similar Projects</h2>
      <ProductList productList={productList}/>
      </div>
       ) : (

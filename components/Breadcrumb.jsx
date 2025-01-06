@@ -1,9 +1,9 @@
 const Breadcrumb = ({path}) => {
     return (
 <nav aria-label="Breadcrumb bg-gray-900">
-  <ol className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-300">
+  <ol className="flex items-center gap-1 text-sm text-green-400 dark:text-green-300">
     <li>
-      <a href="/" className="block transition hover:text-gray-700 dark:hover:text-gray-200">
+      <a href="/" className="block transition hover:text-green-400 dark:hover:text-green-200">
         <span className="sr-only"> Home </span>
 
         <svg

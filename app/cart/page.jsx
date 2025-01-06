@@ -1,6 +1,13 @@
 const page = () => {
     return (
-        <div>
+        <div> 
+       {/* Device settings
+Device: itel A665L
+IMEI: 351016483004132
+First registered: August 31, 2024
+
+jumia: JE-OAL-1662568772-6533
+ */}
 
 <section>
   <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">

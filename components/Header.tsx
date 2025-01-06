@@ -66,7 +66,7 @@ const getCartItem=()=>{
   <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
     <div className="flex items-center justify-between h-16">
       <div className= "md:flex md:items-center md:gap-12">
-        <a className="block text-teal-600 dark:text-teal-600" href="#">
+        <a className="block text-teal-600 dark:text-teal-600" href="/">
           <span className="sr-only">Home</span>
           <Image src={'/devlogo.jpg'} width={50} height={50} alt="logo" className="object-contain rounded-full"/>
         </a>
