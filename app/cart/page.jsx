@@ -1,4 +1,5 @@
 const page = () => {
+  const {cart, setCart}=use
     return (
         <div> 
        {/* Device settings
@@ -26,9 +27,9 @@ jumia: JE-OAL-1662568772-6533
             />
 
             <div>
-              <h3 className="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+              <h3 className="text-sm text-white">Basic Tee 6-Pack</h3>
 
-              <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+              <dl className="mt-0.5 space-y-px text-[10px] text-gray-300">
                 <div>
                   <dt className="inline">Size:</dt>
                   <dd className="inline">XXS</dd>
@@ -54,7 +55,7 @@ jumia: JE-OAL-1662568772-6533
                 />
               </form>
 
-              <button className="text-gray-600 transition hover:text-red-600">
+              <button className="text-gray-300 transition hover:text-red-600">
                 <span className="sr-only">Remove item</span>
 
                 <svg

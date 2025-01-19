@@ -18,8 +18,13 @@ const getProductByCategory=(category)=>axiosClient.get('/products?filters[catego
 
 //Add to Cart Collection
 const addToCart=(data)=>axiosClient.post('/carts',data)
+
 //Get User Cart items
-const getUserCartItems=(email)=>axiosClient.get('/carts?populate[product][populate]=banner&filter[email][$eq]='+email)
+// const getUserCartItems=(email)=>axiosClient.get('/carts?populate[product][populate]=banner&filter[email][$eq]='+email)
+
+const getUserCartItems = (email) =>
+    axiosClient.get(`/carts?populate[product][populate]=banner&filters[email][$eq]=${email}`);  
+
 export default {
     getLatestProducts,
     getProductById,
