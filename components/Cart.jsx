@@ -32,7 +32,7 @@ const Cart = () => {
                             <img
                                 src={item.product?.banner?.url}
                                 alt=""
-                                className="size-16 rounded object-cover"
+                                className="object-cover rounded size-16"
                             />
                             <div>
                                 <h3 className="text-sm text-white">{item.product?.title}</h3>
@@ -50,16 +50,16 @@ const Cart = () => {
                 </ul>
             </div>
 
-            <div className="space-y-4 text-center mt-5">
+            <div className="mt-5 space-y-4 text-center">
                 <a
                     href="#"
-                    className="block rounded bg-white px-5 py-3 text-sm text-black transition hover:bg-gray-600 hover:text-white"
+                    className="block px-5 py-3 text-sm text-black transition bg-white rounded hover:bg-gray-600 hover:text-white"
                 >
                     View my Cart ({cart?.length})
                 </a>
                 <a
                     href="#"
-                    className="inline-block text-sm text-gray-200 underline underline-offset-4 transition hover:text-gray-400"
+                    className="inline-block text-sm text-gray-200 underline transition underline-offset-4 hover:text-gray-400"
                 >
                     Continue shopping
                 </a>
