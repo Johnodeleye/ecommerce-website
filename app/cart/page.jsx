@@ -23,23 +23,21 @@ const page = () => {
                       />
           
                       <div>
-                        <h3 className="text-sm text-white">Basic Tee 6-Pack</h3>
+                        <h3 className="text-sm text-white">{item.product?.title}</h3>
           
                         <dl className="mt-0.5 space-y-px text-[10px] text-gray-300">
                           <div>
-                            <dt className="inline">Size:</dt>
-                            <dd className="inline">XXS</dd>
+                            <dt className="inline">{item.product?.category}</dt>
+
                           </div>
           
-                          <div>
-                            <dt className="inline">Color:</dt>
-                            <dd className="inline">White</dd>
-                          </div>
+
                         </dl>
                       </div>
           
                       <div className="flex items-center justify-end flex-1 gap-2">
-                        <form>
+                        
+                        {/* <form>
                           <label htmlFor="Line1Qty" className="sr-only"> Quantity </label>
           
                           <input
@@ -49,7 +47,12 @@ const page = () => {
                             id="Line1Qty"
                             className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                           />
-                        </form>
+                        </form> */}
+                        
+                        <div>
+                            <dt className="inline">${item.product?.pricing}</dt>
+                         
+                          </div>
           
                         <button className="text-gray-300 transition hover:text-red-600">
                           <span className="sr-only">Remove item</span>
