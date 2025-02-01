@@ -1,8 +1,24 @@
 'use client'
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { CartContext } from '../context/CartContext';
 const page = () => {
+
   const {cart, setCart}=useContext(CartContext);
+  const [totalPrice, setTotalPrice] = useState(0);
+  
+  useEffect(() => {
+    cart && getTotalAmount();
+  }, [cart]);
+  
+  const getTotalAmount = () => {
+    let total = 0;
+    cart.forEach(element => {
+      console.log(element.product.pricing);
+      total += Number(element.product.pricing);
+    });
+    setTotalPrice(total);
+  };
+  
     return (
         
 <section className='bg-gray-900'>
@@ -83,24 +99,12 @@ const page = () => {
         <div className="flex justify-end pt-8 mt-8 border-t border-gray-100">
           <div className="w-screen max-w-lg space-y-4">
             <dl className="space-y-0.5 text-sm text-white">
-              <div className="flex justify-between">
-                <dt>Subtotal</dt>
-                <dd>£250</dd>
-              </div>
 
-              <div className="flex justify-between">
-                <dt>VAT</dt>
-                <dd>£25</dd>
-              </div>
 
-              <div className="flex justify-between">
-                <dt>Discount</dt>
-                <dd>-£20</dd>
-              </div>
-
+             
               <div className="flex justify-between !text-base font-medium">
                 <dt>Total</dt>
-                <dd>£200</dd>
+                <dd>${totalPrice}</dd>
               </div>
             </dl>
 
