@@ -18,6 +18,10 @@ const page = () => {
     });
     setTotalPrice(total);
   };
+
+  const deleteCartItem=(id)=>{
+    console.log
+  }
   
     return (
         
@@ -66,13 +70,13 @@ const page = () => {
                         </form> */}
                         
                         <div>
-                            <dt className="inline">${item.product?.pricing}</dt>
+                            <dt className="inline text-green-500 font-bold">${item.product?.pricing}</dt>
                          
                           </div>
           
                         <button className="text-gray-300 transition hover:text-red-600">
                           <span className="sr-only">Remove item</span>
-          
+                          onClick={()=>deleteCartItem_(item.id)}
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
