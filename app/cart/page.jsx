@@ -1,10 +1,14 @@
 'use client'
 import React, {useContext, useState, useEffect} from 'react';
 import { CartContext } from '../context/CartContext';
+import GlobalApi from '@/utils/GlobalApi';
+import { useSession } from 'next-auth/react';
 const page = () => {
-
+  const sessionEmail = session?.user?.email;
+  const { data: session } = useSession();
   const {cart, setCart}=useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
+
   
   useEffect(() => {
     cart && getTotalAmount();
@@ -20,8 +24,28 @@ const page = () => {
   };
 
   const deleteCartItem=(id)=>{
-    console.log
+    console.log('Delete Record Id:', id)
+    GlobalApi.deleteCartItem(id).then(resp=>{
+      console.log("Cart item deleted successfully!");
+      // setCart(cart=>cart.filter(item=>item._id!==id));
+    })
   }
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      if (sessionEmail) {
+        try {
+          const resp = await GlobalApi.getUserCartItems(sessionEmail);
+          console.log("Cart data:", resp.data.data);
+          setCart(resp.data.data || []); // Update cart context
+        } catch (error) {
+          console.error("Failed to fetch cart items:", error);
+        }
+      }
+    };
+  
+    fetchCartItems();
+  }, [sessionEmail, setCart]);
   
     return (
         
@@ -74,9 +98,9 @@ const page = () => {
                          
                           </div>
           
-                        <button className="text-gray-300 transition hover:text-red-600">
+                        <button className="text-gray-300 transition hover:text-red-600" onClick={()=>deleteCartItem(item.id)}>
                           <span className="sr-only">Remove item</span>
-                          onClick={()=>deleteCartItem_(item.id)}
+                        
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

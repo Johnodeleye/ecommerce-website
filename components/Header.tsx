@@ -54,11 +54,11 @@ openCart===false&&setOpenCart(true);
   }
 }, [isPopupVisible]);
 
-const getCartItem=()=>{
-  GlobalApi.getUserCartItems(sessionEmail).then(resp=>{
-    console.log('cart', resp.data.data);
-  });
-}
+// const getCartItem=()=>{
+//   GlobalApi.getUserCartItems(sessionEmail).then(resp=>{
+//     console.log('cart', resp.data.data);
+//   });
+// }
 
 
     return (
