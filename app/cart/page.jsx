@@ -4,8 +4,8 @@ import { CartContext } from '../context/CartContext';
 import GlobalApi from '@/utils/GlobalApi';
 import { useSession } from 'next-auth/react';
 const page = () => {
-  const sessionEmail = session?.user?.email;
   const { data: session } = useSession();
+  const sessionEmail = session?.user?.email;
   const {cart, setCart}=useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -26,26 +26,27 @@ const page = () => {
   const deleteCartItem=(id)=>{
     console.log('Delete Record Id:', id)
     GlobalApi.deleteCartItem(id).then(resp=>{
-      console.log("Cart item deleted successfully!");
-      // setCart(cart=>cart.filter(item=>item._id!==id));
+      console.log("Cart item deleted successfully!", resp);
+      if(resp)
+      {
+        fetchCartItems()
+      }
+    },(error)=>{
+      console.log(error);
     })
   }
-
-  useEffect(() => {
     const fetchCartItems = async () => {
       if (sessionEmail) {
         try {
           const resp = await GlobalApi.getUserCartItems(sessionEmail);
           console.log("Cart data:", resp.data.data);
-          setCart(resp.data.data || []); // Update cart context
+          setCart([]); // Update cart context
         } catch (error) {
           console.error("Failed to fetch cart items:", error);
         }
       }
     };
   
-    fetchCartItems();
-  }, [sessionEmail, setCart]);
   
     return (
         
